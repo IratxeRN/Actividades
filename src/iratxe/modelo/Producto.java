@@ -1,13 +1,15 @@
 package iratxe.modelo;
 
+import java.math.BigDecimal;
+
 public class Producto {
 
 	private int id;
 	private String nombre;
-	private Double precio;
+	private BigDecimal precio;
 	private int cantidad;
 
-	public Producto(int id, String nombre, Double precio, int cantidad) {
+	public Producto(int id, String nombre, BigDecimal precio, int cantidad) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -31,11 +33,11 @@ public class Producto {
 		this.nombre = nombre;
 	}
 
-	public Double getPrecio() {
+	public BigDecimal getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(Double precio) {
+	public void setPrecio(BigDecimal precio) {
 		this.precio = precio;
 	}
 
@@ -45,6 +47,17 @@ public class Producto {
 
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+
+	public BigDecimal totalPorProducto() {
+
+		BigDecimal cant = new BigDecimal(cantidad);
+		return (precio.multiply(cant));
+	}
+
+	@Override
+	public String toString() {
+		return "Producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", cantidad=" + cantidad + "]";
 	}
 
 	@Override
@@ -82,11 +95,6 @@ public class Producto {
 		} else if (!precio.equals(other.precio))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", cantidad=" + cantidad + "]";
 	}
 
 }
